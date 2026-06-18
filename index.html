@@ -5,19 +5,15 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Raspadinha Especial</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -34,7 +30,29 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-  body::before{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
+background:
+radial-gradient(circle at top left,#ffe4f4 0%,transparent 35%),
+radial-gradient(circle at bottom right,#e7d8ff 0%,transparent 35%),
+linear-gradient(135deg,#ffd6ef,#dcc8ff);
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+body::before{
 
 content:"";
 
@@ -48,13 +66,11 @@ border-radius:50%;
 
 background:rgba(255,255,255,.18);
 
-top:-260px;
+top:-220px;
 
 left:-220px;
 
-filter:blur(80px);
-
-z-index:0;
+filter:blur(90px);
 
 }
 
@@ -70,25 +86,23 @@ height:500px;
 
 border-radius:50%;
 
-background:rgba(255,255,255,.12);
+background:rgba(255,255,255,.15);
 
 bottom:-180px;
 
 right:-180px;
 
-filter:blur(70px);
-
-z-index:0;
+filter:blur(80px);
 
 }
 
 .card{
 
-width:400px;
+width:410px;
 
-max-width:92%;
+max-width:100%;
 
-background:rgba(255,250,247,.96);
+background:rgba(255,250,247,.97);
 
 border-radius:34px;
 
@@ -98,49 +112,15 @@ position:relative;
 
 z-index:2;
 
-backdrop-filter:blur(12px);
-
 border:1px solid rgba(255,255,255,.65);
 
 box-shadow:
 
-0 30px 70px rgba(87,40,112,.18),
+0 30px 70px rgba(91,39,109,.18),
 
-0 10px 30px rgba(255,255,255,.65) inset,
-
-0 3px 8px rgba(255,255,255,.4) inset;
+0 8px 18px rgba(255,255,255,.55) inset;
 
 animation:entrada .8s ease;
-
-transition:.35s;
-
-}
-
-.card:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-
-0 40px 90px rgba(87,40,112,.22),
-
-0 10px 30px rgba(255,255,255,.65) inset;
-
-}
-
-.card{
-
-width:380px;
-
-background:#fff9f4;
-
-border-radius:28px;
-
-padding:28px;
-
-box-shadow:0 15px 40px rgba(0,0,0,.15);
-
-position:relative;
 
 }
 
@@ -148,71 +128,64 @@ position:relative;
 
 text-align:center;
 
-margin-bottom:25px;
+margin-bottom:28px;
 
 }
 
-.header .heart{
+.heart{
 
-font-size:52px;
-
-margin-bottom:14px;
+font-size:54px;
 
 display:inline-block;
 
+margin-bottom:14px;
+
 animation:heartbeat 2s infinite;
-
-filter:drop-shadow(0 5px 10px rgba(255,105,180,.35));
-
-}
 
 }
 
 .header h1{
 
-font-size:30px;
+font-size:31px;
+
+color:#7d2e74;
+
+margin-bottom:12px;
 
 font-weight:700;
 
 letter-spacing:1px;
 
-color:#7d2e74;
-
-margin-bottom:10px;
-
-}
-
 }
 
 .header p{
 
-font-size:15px;
-
-line-height:1.7;
-
 color:#6d6d6d;
 
-max-width:280px;
+font-size:15px;
 
-margin:auto;
-
-}
+line-height:1.6;
 
 }
-
 .scratch-area{
 
 position:relative;
 
 height:320px;
 
-border-radius:20px;
+margin-top:30px;
+
+border-radius:22px;
 
 overflow:hidden;
 
-background:#fff2ea;
+background:#fff4ec;
 
-border:2px solid #f0c8dc;
+border:2px solid #f3d4e4;
+
+box-shadow:
+inset 0 3px 12px rgba(255,255,255,.75),
+0 10px 30px rgba(0,0,0,.08);
 
 }
 
@@ -234,13 +207,18 @@ padding:25px;
 
 text-align:center;
 
+background:
+linear-gradient(180deg,#fffaf8,#fff3ee);
+
 }
 
 .prize h2{
 
-font-size:26px;
+font-size:28px;
 
-color:#c14b7b;
+line-height:1.3;
+
+color:#c84d82;
 
 margin-bottom:18px;
 
@@ -248,9 +226,13 @@ margin-bottom:18px;
 
 .prize p{
 
-color:#555;
+font-size:15px;
 
-margin-bottom:20px;
+line-height:1.6;
+
+color:#666;
+
+margin-bottom:18px;
 
 }
 
@@ -258,21 +240,24 @@ margin-bottom:20px;
 
 display:inline-block;
 
-padding:15px 30px;
-
-background:#ffe1ec;
-
-border:2px dashed #d26490;
+padding:16px 34px;
 
 border-radius:14px;
 
-font-size:28px;
+border:2px dashed #d46b95;
 
-font-weight:bold;
+background:#ffe5ef;
 
-letter-spacing:4px;
+color:#7a2b73;
 
-color:#6d2c71;
+font-size:30px;
+
+font-weight:700;
+
+letter-spacing:6px;
+
+box-shadow:
+0 6px 18px rgba(212,107,149,.25);
 
 }
 
@@ -288,48 +273,67 @@ width:100%;
 
 height:100%;
 
+cursor:pointer;
+
 }
 
 .footer{
 
-margin-top:20px;
+margin-top:22px;
 
 text-align:center;
 
 font-size:14px;
 
-color:#666;
+color:#777;
 
 }
+
 @keyframes heartbeat{
 
-0%{
+0%,100%{
 
 transform:scale(1);
 
 }
 
-20%{
+25%{
 
 transform:scale(1.08);
 
 }
 
-40%{
+50%{
 
 transform:scale(1);
 
 }
 
-60%{
+75%{
 
 transform:scale(1.08);
 
 }
 
-100%{
+}
 
-transform:scale(1);
+@keyframes entrada{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px) scale(.96);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0) scale(1);
+
+}
 
 }
 </style>
@@ -342,17 +346,9 @@ transform:scale(1);
 
 <div class="header">
 
-<div class="heart">
+<div class="heart">❤️</div>
 
-❤️
-
-</div>
-
-<h1>
-
-RASPADINHA ESPECIAL
-
-</h1>
+<h1>RASPADINHA ESPECIAL</h1>
 
 <p>
 
@@ -397,30 +393,39 @@ C4FUN3
 💗 Raspe aproximadamente metade da área.
 
 </div>
+
 </div>
 
 <script>
 
-const canvas = document.getElementById("scratch");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("scratch");
+
+const ctx=canvas.getContext("2d");
 
 function desenharRaspadinha(){
 
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+canvas.width=canvas.offsetWidth;
 
-const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+canvas.height=canvas.offsetHeight;
 
-grad.addColorStop(0,"#cfcfcf");
-grad.addColorStop(.5,"#f4f4f4");
-grad.addColorStop(1,"#bdbdbd");
+const grad=ctx.createLinearGradient(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle = grad;
+grad.addColorStop(0,"#bdbdbd");
+
+grad.addColorStop(.25,"#f7f7f7");
+
+grad.addColorStop(.5,"#d9d9d9");
+
+grad.addColorStop(.75,"#ffffff");
+
+grad.addColorStop(1,"#b7b7b7");
+
+ctx.fillStyle=grad;
+
 ctx.fillRect(0,0,canvas.width,canvas.height);
+for(let i=0;i<1500;i++){
 
-for(let i=0;i<1200;i++){
-
-ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;
+ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.45})`;
 
 ctx.fillRect(
 
@@ -436,9 +441,12 @@ Math.random()*canvas.height,
 
 }
 
-ctx.fillStyle="rgba(120,120,120,.35)";
+ctx.fillStyle="rgba(90,90,90,.45)";
+
 ctx.font="bold 34px Poppins";
+
 ctx.textAlign="center";
+
 ctx.fillText("RASPE AQUI",canvas.width/2,canvas.height/2);
 
 }
@@ -448,8 +456,10 @@ desenharRaspadinha();
 window.addEventListener("resize",desenharRaspadinha);
 
 ctx.lineCap="round";
+
 ctx.lineJoin="round";
-ctx.lineWidth=40;
+
+ctx.lineWidth=42;
 
 let raspando=false;
 
@@ -491,7 +501,7 @@ ctx.globalCompositeOperation="destination-out";
 
 ctx.beginPath();
 
-ctx.arc(p.x,p.y,25,0,Math.PI*2);
+ctx.arc(p.x,p.y,26,0,Math.PI*2);
 
 ctx.fill();
 
@@ -512,11 +522,12 @@ canvas.addEventListener("touchstart",()=>raspando=true);
 canvas.addEventListener("touchend",()=>raspando=false);
 
 canvas.addEventListener("touchmove",raspar,{passive:false});
+
 function verificar(){
 
-const pixels = ctx.getImageData(0,0,canvas.width,canvas.height);
+const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
 
-let transparentes = 0;
+let transparentes=0;
 
 for(let i=3;i<pixels.data.length;i+=4){
 
@@ -528,9 +539,9 @@ transparentes++;
 
 }
 
-const porcentagem = transparentes/(canvas.width*canvas.height);
+const porcentagem=transparentes/(canvas.width*canvas.height);
 
-if(porcentagem > 0.50){
+if(porcentagem>0.5){
 
 canvas.style.transition="opacity .8s";
 
