@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Raspadinha Especial</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(135deg,#ffd2ef,#dcc8ff);
+
+overflow:hidden;
+
+}
+
+.card{
+
+width:380px;
+
+background:#fff9f4;
+
+border-radius:28px;
+
+padding:28px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+position:relative;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.header .heart{
+
+font-size:42px;
+
+margin-bottom:10px;
+
+}
+
+.header h1{
+
+font-size:28px;
+
+color:#7d2e74;
+
+font-weight:700;
+
+}
+
+.header p{
+
+margin-top:10px;
+
+color:#555;
+
+font-size:15px;
+
+line-height:1.5;
+
+}
+
+.scratch-area{
+
+position:relative;
+
+height:320px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+background:#fff2ea;
+
+border:2px solid #f0c8dc;
+
+}
+
+.prize{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+padding:25px;
+
+text-align:center;
+
+}
+
+.prize h2{
+
+font-size:26px;
+
+color:#c14b7b;
+
+margin-bottom:18px;
+
+}
+
+.prize p{
+
+color:#555;
+
+margin-bottom:20px;
+
+}
+
+.codigo{
+
+display:inline-block;
+
+padding:15px 30px;
+
+background:#ffe1ec;
+
+border:2px dashed #d26490;
+
+border-radius:14px;
+
+font-size:28px;
+
+font-weight:bold;
+
+letter-spacing:4px;
+
+color:#6d2c71;
+
+}
+
+canvas{
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+}
+
+.footer{
+
+margin-top:20px;
+
+text-align:center;
+
+font-size:14px;
+
+color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+
+<div class="heart">
+
+❤️
+
+</div>
+
+<h1>
+
+RASPADINHA ESPECIAL
+
+</h1>
+
+<p>
+
+Raspe a área abaixo para descobrir a sua surpresa.
+
+</p>
+
+</div>
+
+<div class="scratch-area">
+
+<div class="prize">
+
+<h2>
+
+VOCÊ RECEBEU UM CAFUNÉ VIRTUAL DA SARA
+
+</h2>
+
+<p>
+
+Caso queira retirá-lo presencialmente,<br>
+
+utilize o código
+
+</p>
+
+<div class="codigo">
+
+C4FUN3
+
+</div>
+
+</div>
+
+<canvas id="scratch"></canvas>
+
+</div>
+
+<div class="footer">
+
+💗 Raspe aproximadamente metade da área.
+
+</div>
+</div>
+
+<script>
+
+const canvas = document.getElementById("scratch");
+const ctx = canvas.getContext("2d");
+
+function desenharRaspadinha(){
+
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+
+grad.addColorStop(0,"#cfcfcf");
+grad.addColorStop(.5,"#f4f4f4");
+grad.addColorStop(1,"#bdbdbd");
+
+ctx.fillStyle = grad;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<1200;i++){
+
+ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5})`;
+
+ctx.fillRect(
+
+Math.random()*canvas.width,
+
+Math.random()*canvas.height,
+
+2,
+
+2
+
+);
+
+}
+
+ctx.fillStyle="rgba(120,120,120,.35)";
+ctx.font="bold 34px Poppins";
+ctx.textAlign="center";
+ctx.fillText("RASPE AQUI",canvas.width/2,canvas.height/2);
+
+}
+
+desenharRaspadinha();
+
+window.addEventListener("resize",desenharRaspadinha);
+
+ctx.lineCap="round";
+ctx.lineJoin="round";
+ctx.lineWidth=40;
+
+let raspando=false;
+
+function posicao(e){
+
+const rect=canvas.getBoundingClientRect();
+
+if(e.touches){
+
+return{
+
+x:e.touches[0].clientX-rect.left,
+
+y:e.touches[0].clientY-rect.top
+
+};
+
+}
+
+return{
+
+x:e.clientX-rect.left,
+
+y:e.clientY-rect.top
+
+};
+
+}
+
+function raspar(e){
+
+if(!raspando)return;
+
+e.preventDefault();
+
+const p=posicao(e);
+
+ctx.globalCompositeOperation="destination-out";
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,25,0,Math.PI*2);
+
+ctx.fill();
+
+verificar();
+
+}
+
+canvas.addEventListener("mousedown",()=>raspando=true);
+
+canvas.addEventListener("mouseup",()=>raspando=false);
+
+canvas.addEventListener("mouseleave",()=>raspando=false);
+
+canvas.addEventListener("mousemove",raspar);
+
+canvas.addEventListener("touchstart",()=>raspando=true);
+
+canvas.addEventListener("touchend",()=>raspando=false);
+
+canvas.addEventListener("touchmove",raspar,{passive:false});
+function verificar(){
+
+const pixels = ctx.getImageData(0,0,canvas.width,canvas.height);
+
+let transparentes = 0;
+
+for(let i=3;i<pixels.data.length;i+=4){
+
+if(pixels.data[i]===0){
+
+transparentes++;
+
+}
+
+}
+
+const porcentagem = transparentes/(canvas.width*canvas.height);
+
+if(porcentagem > 0.50){
+
+canvas.style.transition="opacity .8s";
+
+canvas.style.opacity="0";
+
+setTimeout(()=>{
+
+canvas.style.display="none";
+
+},800);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
